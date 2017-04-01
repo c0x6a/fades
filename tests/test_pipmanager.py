@@ -25,8 +25,7 @@ from unittest.mock import patch
 import logassert
 
 from fades.pipmanager import PipManager
-from fades import pipmanager
-from fades import helpers
+from fades import helpers, pipmanager
 
 
 class PipManagerTestCase(unittest.TestCase):
