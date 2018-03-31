@@ -126,6 +126,16 @@ Push it to the store and release:
     snapcraft release fades 9 stable
 
 
+How to release to Mac/Brew
+--------------------------
+
+It should happen automatically.
+
+Somebody/something just does it. The way to see if "it happened" is to check here:
+
+    https://github.com/Homebrew/homebrew-core/pulls?utf8=%E2%9C%93&q=is%3Apr++fades
+
+
 How to sign the files
 ---------------------
 
@@ -140,6 +150,38 @@ To sign it:
 To create the checksum:
 
     sha1sum FILENAME > FILENAME.sha1
+
+
+Work to do on GitHub
+--------------------
+
+Go to the fades releases page...
+
+    https://github.com/PyAr/fades/releases/
+
+...and create a new release, using the just generated tag above, title "Release X.Y", and pasting the changelog created for some steos above too.
+
+
+Work to do on ReadTheDocs
+-------------------------
+
+Go to fades admin page, versions:
+
+    https://readthedocs.org/dashboard/fades/versions/
+
+There select the revision for the tag created above, and tick in the "Active" checkbox it has, and click on "Save" at the bottom of the page.
+
+After some seconds, it should appear as "compiling" here:
+
+    https://readthedocs.org/projects/fades/builds/
+
+When that is done, go to the same versions page as before, and change the combobox at its top, selecting this last revision as the default one for when going to project's root. Don't forget to click Save, at the bottom.
+
+Verify all is ok going to...
+
+    http://fades.readthedocs.io/
+
+(it should redirect to the latest just-released tag)
 
 
 Final steps
