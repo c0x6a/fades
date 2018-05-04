@@ -24,7 +24,7 @@ grade: stable
 
 apps:
   fades:
-    command: bin/fades
+    command: bin/custom_wrapper_for_snaps.sh
 
 parts:
   fades:

@@ -23,6 +23,7 @@ import platform
 import signal
 import sys
 import subprocess
+from contextlib import contextmanager
 
 import fades
 
@@ -62,6 +63,19 @@ def _merge_deps(*deps):
         for repo, info in dep.items():
             final.setdefault(repo, set()).update(info)
     return final
+
+
+@contextmanager
+def fix_pythonpath():
+    """A context manager to fiddle python paths when working inside a snap."""
+    # FIXME: do this only when inside a snap
+    prev_pythonpath = os.environ.get('PYTHONPATH')
+    os.environ['PYTHONPATH'] = os.environ['PATHFIXER']
+    yield
+    if prev_pythonpath is None:
+        del os.environ['PYTHONPATH']
+    else:
+        os.environ['PYTHONPATH'] = prev_pythonpath
 
 
 def detect_inside_virtualenv(prefix, real_prefix, base_prefix):
@@ -265,8 +279,10 @@ def go():
                 sys.exit(1)
 
         # Create a new venv
-        venv_data, installed = envbuilder.create_venv(indicated_deps, args.python, is_current,
-                                                      options, pip_options)
+        with fix_pythonpath():
+            venv_data, installed = envbuilder.create_venv(
+                indicated_deps, args.python, is_current, options, pip_options)
+
         # store this new venv in the cache
         venvscache.store(installed, venv_data, interpreter, options)
 

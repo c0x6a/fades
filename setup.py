@@ -62,6 +62,7 @@ def get_version():
 # the different scripts according to the platform
 SCRIPT_WIN = 'bin/fades.cmd'
 SCRIPT_REST = 'bin/fades'
+SCRIPT_SNAP = 'bin/custom_wrapper_for_snaps.sh'
 
 
 class CustomInstall(install):
@@ -115,7 +116,7 @@ setup(
     url='https://github.com/PyAr/fades',
     download_url="https://github.com/PyAr/fades/releases",  # Release download URL.
     packages=["fades"],
-    scripts=[SCRIPT_WIN, SCRIPT_REST],
+    scripts=[SCRIPT_WIN, SCRIPT_REST, SCRIPT_SNAP],
     keywords="virtualenv utils utility scripts",  # to get found easily on PyPI results, etc.
     cmdclass={
         'install': CustomInstall,
