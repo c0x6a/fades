@@ -10,7 +10,7 @@ else
     TARGET_TESTS="fades tests"
 fi
 
-FADES='./bin/fades -r requirements.txt'
+FADES='./bin/fades -v -r requirements.txt'
 
 $FADES -x nosetests --with-xcoverage --cover-package=fades -v -s $TARGET_TESTS
 
